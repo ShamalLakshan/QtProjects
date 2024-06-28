@@ -25,7 +25,8 @@ void MainWindow::on_btnAdd_clicked()
 
 void MainWindow::on_btnRemove_clicked()
 {
-
+    QListWidgetItem* item = ui -> lstTasks -> takeItem(ui -> lstTasks -> currentRow());
+    delete item;
 }
 
 
