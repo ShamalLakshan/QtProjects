@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStandardPaths>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,5 +27,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    QString path = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) = "\\todoFile.txt";
 };
 #endif // MAINWINDOW_H

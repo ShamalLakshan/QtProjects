@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QFile file(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) = "\\todoFile.txt");
+    QFile file(path);
 
     if(!file.open(QIODevice::ReadWrite)){
         QMessageBox::information(0, "error", file.errorString());
@@ -30,18 +30,16 @@ MainWindow::~MainWindow()
 {
     delete ui;
 
-    QFile file(QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation) = "\\todoFile.txt");
+    QFile file(path);
 
     if(!file.open(QIODevice::ReadWrite)){
         QMessageBox::information(0, "error", file.errorString());
     }
 
-    QTextStream in(&file);
+    QTextStream out(&file);
 
-    while (!in.atEnd()) {
-        QListWidgetItem* item = new QListWidgetItem(in.readLine(), ui -> lstTasks);
-        ui -> lstTasks -> addItem(item);
-        item -> setFlags(item -> flags() | Qt::ItemIsEditable);
+    for (int i = 0; i < ui -> lstTasks -> count(); ++i) {
+        out << ui -> lstTasks ->item(i) -> text() << "\n";
     }
     file.close();
 }
