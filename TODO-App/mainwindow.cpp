@@ -32,6 +32,6 @@ void MainWindow::on_btnRemove_clicked()
 
 void MainWindow::on_btnRemoveAll_clicked()
 {
-
+    ui -> lstTasks -> clear();
 }
 
